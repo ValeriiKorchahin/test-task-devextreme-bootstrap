@@ -12,7 +12,7 @@ export class UserService {
   constructor(private httpClient:HttpClient) { }
 
   getAll(): Observable<IUser> {
-    return this.httpClient.get<IUser>(environment.API.URL + environment.API.page + '1' + environment.API.results + '25' + environment.API.seed,
+    return this.httpClient.get<IUser>(environment.API.URL + environment.API.results + environment.API.seed,
       {
         headers: {
        "Access-Control-Allow-Origin": "*"
