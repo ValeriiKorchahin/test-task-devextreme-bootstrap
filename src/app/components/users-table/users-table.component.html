@@ -1,0 +1,28 @@
+<dx-data-grid
+  [dataSource]="users"
+  [showColumnLines]="false"
+  [showRowLines]="true"
+  [rowAlternationEnabled]="true"
+  [showBorders]="true">
+  <dxo-paging [pageSize]="25"> </dxo-paging>
+  <dxo-pager
+    [visible]="true"
+    [displayMode]="'full'"
+    [showInfo]="true"
+    [showNavigationButtons]="true"
+  >
+  </dxo-pager>
+  <dx-gallery *ngFor="let picture of users" [dataSource]="picture.picture.medium" [height]="300"></dx-gallery>
+  <dxi-column dataField="name" calculateDisplayValue="name.last" caption="Surname"></dxi-column>
+  <dxi-column dataField="name" calculateDisplayValue="name.first"></dxi-column>
+  <dxi-column dataField="gender"></dxi-column>
+  <dxi-column dataField="phone"></dxi-column>
+  <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+  <div *dxTemplate="let user of 'detail'">
+    <div>
+      <p>City: {{user.data.location.city}}</p>
+      <p>Street: {{user.data.location.street.number}}, {{user.data.location.street.name}}</p>
+      <p>Email: {{user.data.email}}</p>
+    </div>
+  </div>
+</dx-data-grid>
