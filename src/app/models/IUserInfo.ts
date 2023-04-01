@@ -14,6 +14,6 @@ export interface IUserInfo {
   email: string,
   phone: string,
   picture: {
-    medium: string,
+    large: string,
   }
 }

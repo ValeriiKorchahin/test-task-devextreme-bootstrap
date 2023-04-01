@@ -8,6 +8,7 @@ import { ControlsComponent } from './components/controls/controls.component';
 import {routes} from "./routes/routes";
 import {DxDataGridModule, DxGalleryModule, DxTemplateModule} from "devextreme-angular";
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,14 +16,15 @@ import {HttpClientModule} from "@angular/common/http";
     UsersTableComponent,
     ControlsComponent,
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes),
-    HttpClientModule,
-    DxDataGridModule,
-    DxTemplateModule,
-    DxGalleryModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(routes),
+        HttpClientModule,
+        DxDataGridModule,
+        DxTemplateModule,
+        DxGalleryModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

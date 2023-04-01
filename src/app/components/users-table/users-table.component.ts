@@ -15,11 +15,30 @@ export class UsersTableComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getResults();
+    const saved = localStorage.getItem('params');
+
+    if (saved) {
+      this.findUsersByOptions(saved.split(','))
+    }
+    else {
+      this.getResults();
+    }
+
   }
 
   getResults() {
     this.userService.getAll().subscribe( users => this.users = users.results)
   }
 
+  findUsersByOptions($event: string[]) {
+    const savedParams = localStorage.getItem('genderOptionVal') + ',' + localStorage.getItem('locationOptionVal') + ',' + localStorage.getItem('emailOptionVal') + ',' + localStorage.getItem('phoneOptionVal');
+
+    localStorage.setItem('params', savedParams);
+
+    if(savedParams !== null){
+      this.userService.getAllByFilteredOptions(savedParams).subscribe( users => this.users = users.results)
+    } else {
+      this.userService.getAllByFilteredOptions($event.join()).subscribe(users => this.users = users.results)
+    }
+  }
 }

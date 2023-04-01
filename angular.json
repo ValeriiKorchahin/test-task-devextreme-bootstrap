@@ -26,9 +26,12 @@
             ],
             "styles": [
               "./node_modules/devextreme/dist/css/dx.common.css",
-              "./node_modules/devextreme/dist/css/dx.light.css"
+              "./node_modules/devextreme/dist/css/dx.light.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
