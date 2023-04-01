@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="main-info">
+    <div class="profile-header">
+      <div>
+        <img class="picture" alt="profile picture" [src]="user?.picture?.large">
+      </div>
+      <div class="name">
+        <h2>{{user?.name?.last}} {{user?.name?.first}}</h2>
+      </div>
+    </div>
+    <div class="profile-body">
+      <h4>Location</h4>
+      <div>
+        <p>{{user?.location?.country}}, {{user?.location?.city}}</p>
+        <p>Street: {{user?.location?.street?.number}} ,{{user?.location?.street?.name}}</p>
+      </div>
+    </div>
+    <div class="profile-footer">
+      <h4>Contacts</h4>
+      <div>
+        <p>Email: {{user?.email}}</p>
+        <p>Phone: {{user?.phone}}</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button type="button" class="btn btn-success" (click)="goBack()">Go back</button>
+  </div>
+</div>

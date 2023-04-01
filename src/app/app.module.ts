@@ -9,12 +9,14 @@ import {routes} from "./routes/routes";
 import {DxDataGridModule, DxGalleryModule, DxTemplateModule} from "devextreme-angular";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersTableComponent,
     ControlsComponent,
+    AboutComponent,
   ],
     imports: [
         BrowserModule,

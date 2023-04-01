@@ -6,7 +6,8 @@ export interface IUserInfo {
   },
   location: {
     street: {
-      name: string
+      name: string,
+      number: number
     },
     city: string,
     country: string,

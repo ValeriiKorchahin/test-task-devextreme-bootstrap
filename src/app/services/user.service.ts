@@ -18,4 +18,8 @@ export class UserService {
   getAllByFilteredOptions(option: string): Observable<IUser> {
     return this.httpClient.get<IUser>(environment.API.URL + environment.API.options + option + environment.API.results + environment.API.seed)
   }
+
+  getOneRandomUser(): Observable<IUser> {
+    return this.httpClient.get<IUser>(environment.API.URL)
+  }
 }
