@@ -1,5 +1,13 @@
-.controls {
+
+.control-container, .controls {
   display: flex;
-  justify-content: center;
   gap: 30px;
+}
+
+.controls {
+  justify-content: space-around;
+}
+
+.control-container {
+  display: flex;
 }
