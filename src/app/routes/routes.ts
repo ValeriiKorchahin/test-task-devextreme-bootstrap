@@ -5,7 +5,7 @@ import {AboutComponent} from "../components/about/about.component";
 
 export const routes: Routes = [
   {
-    path:'', component: UsersTableComponent
+    path: '', component: UsersTableComponent
   },
   {
     path: 'about', component: AboutComponent

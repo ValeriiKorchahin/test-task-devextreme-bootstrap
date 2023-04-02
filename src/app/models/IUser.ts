@@ -1,5 +1,5 @@
 import {IUserInfo} from "./IUserInfo";
 
-export interface IUser{
+export interface IUser {
   results: [IUserInfo]
 }

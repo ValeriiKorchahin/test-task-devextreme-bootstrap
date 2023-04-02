@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.wrapper, .name{
+.wrapper, .name {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.wrapper{
+.wrapper {
   height: 600px;
   gap: 15px;
   flex-direction: column;
 }
 
-.main-info{
+.main-info {
   padding: 30px;
   width: 500px;
   background-color: #d8efff;
@@ -21,19 +20,16 @@
   gap: 20px;
 }
 
-.profile-header{
+.profile-header {
   display: flex;
   gap: 15px;
 }
 
-.name{
+.name {
   width: 200px;
 }
 
-.picture{
+.picture {
   border-radius: 50%;
 }
 
-p{
-  font-family: 'Roboto', sans-serif;
-}

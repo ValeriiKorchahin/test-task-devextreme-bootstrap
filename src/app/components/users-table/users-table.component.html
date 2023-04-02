@@ -6,6 +6,9 @@
   [showRowLines]="true"
   [rowAlternationEnabled]="true"
   [showBorders]="true">
+
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
   <dxo-paging [pageSize]="25"></dxo-paging>
   <dxo-pager
     [visible]="true"
@@ -14,8 +17,7 @@
     [showNavigationButtons]="true"
   >
   </dxo-pager>
-  <dxi-column dataField="surname" calculateDisplayValue="name.last"></dxi-column>
-  <dxi-column dataField="name" calculateDisplayValue="name.first"></dxi-column>
+  <dxi-column dataField="name.last" caption="Name" [calculateDisplayValue]="transformName"></dxi-column>
   <dxi-column *ngIf="users[0]?.gender" dataField="gender"></dxi-column>
   <dxi-column *ngIf="users[0]?.phone" dataField="phone"></dxi-column>
   <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
@@ -26,7 +28,8 @@
       </div>
       <div class="info">
         <p *ngIf="user.data?.location">City: {{user.data?.location?.city}}</p>
-        <p *ngIf="user.data?.location">Street: {{user.data?.location?.street?.number}} {{user.data?.location?.street?.name}}</p>
+        <p *ngIf="user.data?.location">
+          Street: {{user.data?.location?.street?.number}} {{user.data?.location?.street?.name}}</p>
         <p *ngIf="user.data?.email">Email: {{user.data.email}}</p>
       </div>
     </div>

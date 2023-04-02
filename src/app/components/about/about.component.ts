@@ -7,14 +7,15 @@ import {IUserInfo} from "../../models/IUserInfo";
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
-export class AboutComponent implements OnInit{
+export class AboutComponent implements OnInit {
 
   user: IUserInfo
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
-    this.userService.getOneRandomUser().subscribe( user => {
+    this.userService.getOneRandomUser().subscribe(user => {
       this.user = user.results[0];
     })
   }

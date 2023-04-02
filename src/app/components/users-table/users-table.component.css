@@ -1,9 +1,9 @@
-.details, .info{
+.details, .info {
   display: flex;
   gap: 20px;
 }
 
-.info{
+.info {
   flex-direction: column;
   gap: 10px;
 }
