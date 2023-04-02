@@ -29,7 +29,7 @@
   <dxi-column *ngIf="users[0]?.phone" dataField="phone"></dxi-column>
   <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
   <div *dxTemplate="let image of 'cellTemplate'">
-    <img alt="image" [src]="image.data?.picture?.thumbnail" />
+    <img class="image" alt="image" [src]="image.data?.picture?.medium"/>
   </div>
   <div *dxTemplate="let user of 'detail'">
     <div class="details">

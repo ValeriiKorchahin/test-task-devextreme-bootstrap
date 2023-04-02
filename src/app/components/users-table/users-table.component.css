@@ -8,5 +8,10 @@
   gap: 10px;
 }
 
+.image {
+  border-radius: 50%;
+}
 
-
+p {
+  font-size: 15px;
+}
