@@ -17,15 +17,22 @@
     [showNavigationButtons]="true"
   >
   </dxo-pager>
+  <dxi-column
+    dataField="Picture.large"
+    [width]="100"
+    [allowFiltering]="false"
+    [allowSorting]="false"
+    cellTemplate="cellTemplate">
+  </dxi-column>
   <dxi-column dataField="name.last" caption="Name" [calculateDisplayValue]="transformName"></dxi-column>
   <dxi-column *ngIf="users[0]?.gender" dataField="gender"></dxi-column>
   <dxi-column *ngIf="users[0]?.phone" dataField="phone"></dxi-column>
   <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+  <div *dxTemplate="let image of 'cellTemplate'">
+    <img alt="image" [src]="image.data?.picture?.thumbnail" />
+  </div>
   <div *dxTemplate="let user of 'detail'">
     <div class="details">
-      <div>
-        <img alt="picture" [src]="user.data?.picture?.large">
-      </div>
       <div class="info">
         <p *ngIf="user.data?.location">City: {{user.data?.location?.city}}</p>
         <p *ngIf="user.data?.location">

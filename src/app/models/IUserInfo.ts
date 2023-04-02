@@ -16,5 +16,6 @@ export interface IUserInfo {
   phone: string,
   picture: {
     large: string,
+    thumbnail: string
   }
 }
