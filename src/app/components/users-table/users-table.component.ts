@@ -30,7 +30,12 @@ export class UsersTableComponent implements OnInit {
   }
 
   getResults() {
-    this.userService.getAll().subscribe(users => this.users = users.results)
+    this.userService.getAll().subscribe({
+      next: (users) => {
+        this.users = users.results;
+      },
+      error: (err) => console.error('Error:', err)
+    })
   }
 
   findUsersByOptions($event: string[]) {
@@ -42,9 +47,19 @@ export class UsersTableComponent implements OnInit {
     localStorage.setItem('params', savedParams);
 
     if (savedParams !== null) {
-      this.userService.getAllByFilteredOptions(savedParams).subscribe(users => this.users = users.results)
+      this.userService.getAllByFilteredOptions(savedParams).subscribe({
+        next: (users) => {
+          this.users = users.results;
+        },
+        error: (err) => console.error('Error:', err)
+      })
     } else {
-      this.userService.getAllByFilteredOptions($event.join()).subscribe(users => this.users = users.results)
+      this.userService.getAllByFilteredOptions($event.join()).subscribe({
+        next: (users) => {
+          this.users = users.results;
+        },
+        error: (err) => console.error('Error:', err)
+      })
     }
   }
 }

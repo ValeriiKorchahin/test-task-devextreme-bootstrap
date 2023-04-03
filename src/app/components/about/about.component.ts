@@ -15,8 +15,11 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getOneRandomUser().subscribe(user => {
-      this.user = user.results[0];
+    this.userService.getOneRandomUser().subscribe({
+      next: (user) => {
+        this.user = user.results[0];
+      },
+      error: (err) => console.error('Error:', err)
     })
   }
 
