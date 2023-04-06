@@ -2,7 +2,7 @@
   <div class="main-info">
     <div class="profile-header">
       <div>
-        <img class="picture" alt="profile picture" [src]="user?.picture?.large">
+        <img alt="profile-picture" class="picture" appOnImageLoading [src]="user?.picture?.large">
       </div>
       <div class="name">
         <h2>{{user?.name?.last}} {{user?.name?.first}}</h2>

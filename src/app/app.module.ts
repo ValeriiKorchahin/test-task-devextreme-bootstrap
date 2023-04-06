@@ -10,6 +10,7 @@ import {DxDataGridModule, DxGalleryModule, DxTemplateModule} from "devextreme-an
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { AboutComponent } from './components/about/about.component';
+import { OnImageLoadingDirective } from './directives/on-image-loading.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AboutComponent } from './components/about/about.component';
     UsersTableComponent,
     ControlsComponent,
     AboutComponent,
+    OnImageLoadingDirective,
   ],
     imports: [
         BrowserModule,
