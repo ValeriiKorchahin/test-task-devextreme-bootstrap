@@ -34,16 +34,15 @@ export class ControlsComponent implements OnInit {
 
   onControlChange($event: any) {
     if (!$event.target.checked) {
-      localStorage.setItem(`is${$event.target.value}Checked`, $event.target.checked)
-      this.params.push($event.target.value)
-      localStorage.setItem('SEARCH_PARAMS', JSON.stringify(this.params))
-      this.searchOption.emit(this.params)
+      this.setCheckboxStatus($event.target.value, $event.target.checked)
+      this.addParameter($event.target.value);
+      this.setNewParams();
+      this.searchOption.emit(this.params);
     } else {
-      localStorage.setItem(`is${$event.target.value}Checked`, $event.target.checked)
-      const savedParams = JSON.parse(localStorage.getItem('SEARCH_PARAMS') as string);
-      const newParams = savedParams.filter((opt: string) => opt !== $event.target.value)
-      localStorage.setItem('SEARCH_PARAMS', JSON.stringify(newParams))
-      this.searchOption.emit(newParams)
+      this.setCheckboxStatus($event.target.value, $event.target.checked)
+      this.removeParameter($event.target.value);
+      this.setNewParams();
+      this.searchOption.emit(this.params);
     }
   }
 
@@ -66,6 +65,23 @@ export class ControlsComponent implements OnInit {
     if (isPhoneChecked !== null) {
       this.phone.isSelected = isPhoneChecked;
     }
+  }
+
+  private setNewParams() {
+    localStorage.setItem('SEARCH_PARAMS', JSON.stringify(this.params));
+  }
+
+  private removeParameter(parameter: string) {
+    const parameters = JSON.parse(localStorage.getItem('SEARCH_PARAMS') as string);
+    this.params = parameters.filter((opt: string) => opt !== parameter);
+  }
+
+  private addParameter(parameter: string) {
+    this.params.push(parameter);
+  }
+
+  setCheckboxStatus(parameter: string, isChecked: string) {
+    localStorage.setItem(`is${parameter}Checked`, isChecked);
   }
 
 }

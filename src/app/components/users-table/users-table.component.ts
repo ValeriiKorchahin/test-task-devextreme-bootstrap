@@ -15,14 +15,14 @@ export class UsersTableComponent implements OnInit {
   }
 
   transformName(rowData: any) {
-    return `${rowData.name.last} ${rowData.name.first}`
+    return `${rowData.name.last} ${rowData.name.first}`;
   }
 
   ngOnInit(): void {
     const savedParams = JSON.parse(localStorage.getItem('SEARCH_PARAMS') as string);
-
-    if (savedParams) {
-      this.findUsersByOptions(savedParams)
+    console.log(savedParams)
+    if (savedParams !== null && savedParams.length !== 0) {
+      this.findUsersByOptions(savedParams);
     } else {
       this.getResults();
     }
@@ -38,13 +38,17 @@ export class UsersTableComponent implements OnInit {
   }
 
   findUsersByOptions($event: string[]) {
-    this.userService.getAllByFilteredOptions($event.join(',')).subscribe({
-      next: (users) => {
-        this.users = users.results;
-      },
-      error: (err) => {
-        console.error('Error:', err)
-      }
-    })
+    if ($event.length !== 0) {
+      this.userService.getAllByFilteredOptions($event.join(',')).subscribe({
+        next: (users) => {
+          this.users = users.results;
+        },
+        error: (err) => {
+          console.error('Error:', err)
+        }
+      })
+    } else {
+      this.getResults()
+    }
   }
 }
