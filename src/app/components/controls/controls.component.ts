@@ -5,8 +5,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   templateUrl: './controls.component.html',
   styleUrls: ['./controls.component.css']
 })
-export class ControlsComponent implements OnInit
-{
+export class ControlsComponent implements OnInit {
 
   @Output() searchOption = new EventEmitter<string[]>;
 
@@ -36,11 +35,10 @@ export class ControlsComponent implements OnInit
   onControlChange($event: any) {
     if (!$event.target.checked) {
       localStorage.setItem(`is${$event.target.value}Checked`, $event.target.checked)
-        this.params.push($event.target.value)
-        localStorage.setItem('SEARCH_PARAMS', JSON.stringify(this.params))
-        this.searchOption.emit(this.params)
-    }
-    else {
+      this.params.push($event.target.value)
+      localStorage.setItem('SEARCH_PARAMS', JSON.stringify(this.params))
+      this.searchOption.emit(this.params)
+    } else {
       localStorage.setItem(`is${$event.target.value}Checked`, $event.target.checked)
       const savedParams = JSON.parse(localStorage.getItem('SEARCH_PARAMS') as string);
       const newParams = savedParams.filter((opt: string) => opt !== $event.target.value)
