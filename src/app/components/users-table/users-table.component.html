@@ -1,4 +1,4 @@
-<app-controls class="m-2" (OnOptionSelect)="findUsersByOptions($event)"></app-controls>
+<app-controls (searchOption)="findUsersByOptions($event)" class="m-2"></app-controls>
 
 <dx-data-grid
   [dataSource]="users"

@@ -19,14 +19,13 @@ export class UsersTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const saved = localStorage.getItem('params');
+    const savedParams = JSON.parse(localStorage.getItem('SEARCH_PARAMS') as string);
 
-    if (saved) {
-      this.findUsersByOptions(saved.split(','))
+    if (savedParams) {
+      this.findUsersByOptions(savedParams)
     } else {
       this.getResults();
     }
-
   }
 
   getResults() {
@@ -39,27 +38,13 @@ export class UsersTableComponent implements OnInit {
   }
 
   findUsersByOptions($event: string[]) {
-    const savedParams = localStorage.getItem('genderOptionVal') + ','
-      + localStorage.getItem('locationOptionVal') + ','
-      + localStorage.getItem('emailOptionVal') + ','
-      + localStorage.getItem('phoneOptionVal');
-
-    localStorage.setItem('params', savedParams);
-
-    if (savedParams !== null) {
-      this.userService.getAllByFilteredOptions(savedParams).subscribe({
-        next: (users) => {
-          this.users = users.results;
-        },
-        error: (err) => console.error('Error:', err)
-      })
-    } else {
-      this.userService.getAllByFilteredOptions($event.join()).subscribe({
-        next: (users) => {
-          this.users = users.results;
-        },
-        error: (err) => console.error('Error:', err)
-      })
-    }
+    this.userService.getAllByFilteredOptions($event.join(',')).subscribe({
+      next: (users) => {
+        this.users = users.results;
+      },
+      error: (err) => {
+        console.error('Error:', err)
+      }
+    })
   }
 }
