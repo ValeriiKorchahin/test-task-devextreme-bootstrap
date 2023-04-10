@@ -29,24 +29,20 @@ export class ControlsComponent implements OnInit {
 
   onControlChange($event: any) {
     if (!$event.target.checked) {
-      this.setCheckboxStatus($event.target.value, $event.target.checked)
-      this.addParameter($event.target.value);
-      this.setNewParams();
+      this.addParameter($event.target.value, $event.target.checked);
       this.searchOption.emit(this.params);
     } else {
-      this.setCheckboxStatus($event.target.value, $event.target.checked)
       this.removeParameter($event.target.value);
-      this.setNewParams();
       this.searchOption.emit(this.params);
     }
   }
 
 
   ngOnInit(): void {
-    const isGenderChecked = JSON.parse(localStorage.getItem('isgenderChecked') as string);
-    const isLocationChecked = JSON.parse(localStorage.getItem('islocationChecked') as string);
-    const isEmailChecked = JSON.parse(localStorage.getItem('isemailChecked') as string);
-    const isPhoneChecked = JSON.parse(localStorage.getItem('isphoneChecked') as string);
+    const isGenderChecked = ControlsComponent.getItem('gender');
+    const isLocationChecked = ControlsComponent.getItem('location');
+    const isEmailChecked = ControlsComponent.getItem('email');
+    const isPhoneChecked = ControlsComponent.getItem('phone');
 
     if (isGenderChecked !== null) {
       this.gender.isSelected = isGenderChecked;
@@ -62,21 +58,32 @@ export class ControlsComponent implements OnInit {
     }
   }
 
-  private setNewParams() {
-    localStorage.setItem('SEARCH_PARAMS', JSON.stringify(this.params));
+  public static setNewItem(key: string, value: string | string[]) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  public static getItem(key: string) {
+    return JSON.parse(localStorage.getItem(key) as string);
+  }
+
+  public static removeItem(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  public static clearStorage() {
+    localStorage.clear();
   }
 
   private removeParameter(parameter: string) {
-    const parameters = JSON.parse(localStorage.getItem('SEARCH_PARAMS') as string);
+    ControlsComponent.removeItem(parameter);
+    const parameters = ControlsComponent.getItem('SEARCH_PARAMS');
     this.params = parameters.filter((opt: string) => opt !== parameter);
+    ControlsComponent.setNewItem('SEARCH_PARAMS', this.params);
   }
 
-  private addParameter(parameter: string) {
+  private addParameter(parameter: string, status: string) {
+    ControlsComponent.setNewItem(parameter, status);
     this.params.push(parameter);
+    ControlsComponent.setNewItem('SEARCH_PARAMS', this.params);
   }
-
-  setCheckboxStatus(parameter: string, isChecked: string) {
-    localStorage.setItem(`is${parameter}Checked`, isChecked);
-  }
-
 }
