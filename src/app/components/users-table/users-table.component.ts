@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {IUserInfo} from "../../models/IUserInfo";
+import {ControlsComponent} from "../controls/controls.component";
 
 @Component({
   selector: 'app-users-table',
@@ -19,7 +20,7 @@ export class UsersTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const savedParams = JSON.parse(localStorage.getItem('SEARCH_PARAMS') as string);
+    const savedParams = ControlsComponent.getItem('SEARCH_PARAMS');
     if (savedParams) {
       this.findUsersByOptions(savedParams);
     } else {
@@ -47,12 +48,8 @@ export class UsersTableComponent implements OnInit {
         }
       })
     } else {
-      this.removeParams();
+      ControlsComponent.clearStorage()
       this.getResults();
     }
-  }
-
-  removeParams() {
-    localStorage.removeItem('SEARCH_PARAMS')
   }
 }
