@@ -20,8 +20,7 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit(): void {
     const savedParams = JSON.parse(localStorage.getItem('SEARCH_PARAMS') as string);
-    console.log(savedParams)
-    if (savedParams !== null && savedParams.length !== 0) {
+    if (savedParams) {
       this.findUsersByOptions(savedParams);
     } else {
       this.getResults();
@@ -48,7 +47,12 @@ export class UsersTableComponent implements OnInit {
         }
       })
     } else {
-      this.getResults()
+      this.removeParams();
+      this.getResults();
     }
+  }
+
+  removeParams() {
+    localStorage.removeItem('SEARCH_PARAMS')
   }
 }

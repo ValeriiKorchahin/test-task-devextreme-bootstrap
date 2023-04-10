@@ -11,25 +11,20 @@ export class ControlsComponent implements OnInit {
 
   params: string[] = [];
 
-
   gender = {
-    isSelected: true,
-    value: 'gender'
+    isSelected: true
   };
 
   location = {
-    isSelected: true,
-    value: 'location'
+    isSelected: true
   };
 
   email = {
-    isSelected: true,
-    value: 'email'
+    isSelected: true
   };
 
   phone = {
-    isSelected: true,
-    value: 'phone'
+    isSelected: true
   };
 
   onControlChange($event: any) {
