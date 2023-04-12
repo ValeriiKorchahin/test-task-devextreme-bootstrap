@@ -83,6 +83,10 @@ export class ControlsComponent implements OnInit {
 
   private addParameter(parameter: string, status: string) {
     ControlsComponent.setNewItem(parameter, status);
+    const parameters = ControlsComponent.getItem('SEARCH_PARAMS');
+    if (parameters !== null) {
+      this.params = parameters
+    }
     this.params.push(parameter);
     ControlsComponent.setNewItem('SEARCH_PARAMS', this.params);
   }
